@@ -1,11 +1,10 @@
 name             'graphite-wrapper'
-maintainer       'YOUR_COMPANY_NAME'
-maintainer_email 'YOUR_EMAIL'
-license          'All rights reserved'
+maintainer       'Ryutaro YOSHIBA'
+maintainer_email 'ryuzee@gmail.com'
+license          'MIT License'
 description      'Installs/Configures graphite'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.1.0'
 depends          'apt'
 depends          'graphite'
-
-supports         'ubuntu'
+supports         'ubuntu', '>= 12.04'

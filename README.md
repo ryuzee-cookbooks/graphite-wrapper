@@ -1,24 +1,17 @@
-. Cookbook
+graphite-wrapper Cookbook
 ==========
-TODO: Enter the cookbook description here.
+This cookbook fixes a problem of graphite cookbook. See https://github.com/hw-cookbooks/graphite/pull/172
 
-e.g.
-This cookbook makes your favorite breakfast sandwich.
+The problem is that graphite cookbook generate a config file named "graphite" but apache can read config files only if these config files end with .conf.
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
-
-e.g.
 #### packages
-- `toaster` - . needs toaster to brown your bagel.
+- `graphite` - Installing Graphite. available at https://github.com/hw-cookbooks/graphite
 
 Attributes
 ----------
-TODO: List your cookbook attributes here.
-
-e.g.
-#### .::default
+#### graphite-wrapper::default
 <table>
   <tr>
     <th>Key</th>
@@ -27,35 +20,60 @@ e.g.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['.']['bacon']</tt></td>
+    <td><tt>['graphite']['password']</tt></td>
+    <td>String</td>
+    <td>Login password for Graphite</td>
+    <td><tt>password</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['graphite']['timezone']</tt></td>
+    <td>String</td>
+    <td>Timezone for Graphite</td>
+    <td><tt>Asia/Tokyo</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['graphite']['apache']['basic_auth']['enabled']</tt></td>
     <td>Boolean</td>
-    <td>whether to include bacon</td>
+    <td>Use apache2 basic authorization</td>
     <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['graphite']['apache']['basic_auth']['file_path']</tt></td>
+    <td>String</td>
+    <td>path to password file</td>
+    <td><tt>htpasswd</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['graphite']['apache']['basic_auth']['user']</tt></td>
+    <td>String</td>
+    <td>Login user for basic authorization</td>
+    <td><tt>admin</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['graphite']['apache']['basic_auth']['password']</tt></td>
+    <td>String</td>
+    <td>Login password for basic authorization</td>
+    <td><tt>password</tt></td>
   </tr>
 </table>
 
 Usage
 -----
-#### .::default
-TODO: Write usage instructions for each cookbook.
-
-e.g.
-Just include `.` in your node's `run_list`:
+#### graphite-wrapper::default
+Just include `graphite-wrapper` in your node's `run_list`:
 
 ```json
 {
   "name":"my_node",
   "run_list": [
-    "recipe[.]"
+    "recipe[graphite-wrapper::default]"
   ]
 }
 ```
 
 Contributing
 ------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
 
-e.g.
 1. Fork the repository on Github
 2. Create a named feature branch (like `add_component_x`)
 3. Write your change
@@ -65,4 +83,6 @@ e.g.
 
 License and Authors
 -------------------
-Authors: TODO: List authors
+Authors: Ryutaro YOSHIBA
+
+License: MIT

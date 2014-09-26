@@ -26,7 +26,7 @@ end
 
 execute 'ln -s /etc/apache2/sites-available/graphite.conf /etc/apache2/sites-enabled/graphite.conf' do
   action :run
-  only_if { File.exist?('/etc/apache2/sites-available/graphite.conf') }
+  not_if { File.exist?('/etc/apache2/sites-enabled/graphite.conf') }
   notifies :restart, 'service[apache2]'
 end
 
